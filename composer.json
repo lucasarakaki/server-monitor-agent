@@ -1,0 +1,26 @@
+{
+    "name": "lucastakeshi/server-monitor-agent",
+    "description": "Metrics collection agent for server monitoring",
+    "type": "project",
+    "require": {
+        "php": ">=8.3",
+        "guzzlehttp/guzzle": "^7.9"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpunit/phpunit": "^12.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lucasarakaki",
+            "email": "takeshioficial01@gmail.com"
+        }
+    ]
+}
