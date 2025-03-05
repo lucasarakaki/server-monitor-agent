@@ -23,5 +23,11 @@
             "name": "lucasarakaki",
             "email": "takeshioficial01@gmail.com"
         }
-    ]
+    ],
+    "scripts": {
+        "test:unit": "phpunit --testdox",
+        "tests": [
+            "@test:unit"
+        ]
+    }
 }
