@@ -19,7 +19,7 @@ class ApiService
      * Class sendMetricsApi
      * Sends metrics to the API
      */
-    public function sendMetricsApi(string $metrics, string $uri): void
+    public function sendMetricsApi(array $metrics, string $uri): void
     {
         try {
             $response = $this->client->post(trim($uri, '/'), [
