@@ -5,29 +5,21 @@ namespace App\Services;
 class LoggerService
 {
     /**
-     * Save the file name
-     *
-     * @var string
-     */
-    private string $logFile;
-
-    /**
      * Class constructor
      * Stores the value in logFile
-     *
-     * @param string $logFile
      */
-    public function __construct(string $logFile)
+    public function __construct(
+        /**
+         * Save the file name
+         */
+        private readonly string $logFile
+    )
     {
-        $this->logFile = $logFile;
     }
 
     /**
      * Class Log
      * Captures the log and saves it in the logs directory
-     *
-     * @param  string $message
-     * @return void
      */
     public function Log(string $message): void
     {
