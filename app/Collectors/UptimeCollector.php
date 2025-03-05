@@ -8,8 +8,6 @@ class UptimeCollector
 {
     /**
      * collecting uptime metrics
-     *
-     * @return int
      */
     public function collector(): int
     {

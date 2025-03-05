@@ -8,8 +8,6 @@ class MemoryCollector
 {
     /**
      * collecting memory metrics
-     *
-     * @return float
      */
     public function collector(): float
     {

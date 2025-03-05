@@ -8,8 +8,6 @@ class CpuCollector
 {
     /**
      * collecting CPU metrics
-     *
-     * @return float
      */
     public function collector(): float
     {

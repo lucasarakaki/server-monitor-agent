@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
  */
 class UptimeCollectorTest extends TestCase
 {
-    public function testCollectReturnsValidUptimeUsage()
+    public function testCollectReturnsValidUptimeUsage(): void
     {
         $uptimeUsage = new UptimeCollector();
         $uptimeUsage = $uptimeUsage->collector();

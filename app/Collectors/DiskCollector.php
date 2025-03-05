@@ -8,8 +8,6 @@ class DiskCollector
 {
     /**
      * collecting disk metrics
-     *
-     * @return float
      */
     public function collector(): float
     {

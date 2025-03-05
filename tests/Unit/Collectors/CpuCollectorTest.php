@@ -13,7 +13,7 @@ class CpuCollectorTest extends TestCase
      * This test checks if the collect() method returns a value between 0 and 100,
      * which is the expected range for CPU usage.
      */
-    public function testCollectReturnsValidCpuUsage()
+    public function testCollectReturnsValidCpuUsage(): void
     {
         $cpuUsage = new CpuCollector();
         $cpuUsage = $cpuUsage->collector();

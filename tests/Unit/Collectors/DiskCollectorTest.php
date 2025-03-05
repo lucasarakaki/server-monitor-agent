@@ -13,7 +13,7 @@ class DiskCollectorTest extends TestCase
      * This test checks if the collect() method returns a value between 0 and 100,
      * which is the expected range for Disk usage.
      */
-    public function testCollectReturnsValidDiskUsage()
+    public function testCollectReturnsValidDiskUsage(): void
     {
         $diskUsage = new DiskCollector();
         $diskUsage = $diskUsage->collector();
