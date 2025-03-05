@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace App\Collectors;
 
 use App\Exceptions\CollectorException;
@@ -7,7 +10,7 @@ use Exception;
 class DiskCollector
 {
     /**
-     * collecting disk metrics
+     * collecting disk metrics.
      */
     public function collector(): float
     {
@@ -17,12 +20,12 @@ class DiskCollector
             $diskUsage = (float) trim($output);
 
             if ($diskUsage < 0 || $diskUsage > 100) {
-                throw new CollectorException('Invalid disk value' . $diskUsage);
+                throw new CollectorException('Invalid disk value'.$diskUsage);
             }
 
             return $diskUsage;
         } catch (Exception $e) {
-            throw new CollectorException('Error collecting disk metrics' . $e->getMessage());
+            throw new CollectorException('Error collecting disk metrics'.$e->getMessage());
         }
     }
 }

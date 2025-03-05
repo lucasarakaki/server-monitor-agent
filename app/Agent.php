@@ -1,19 +1,21 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App;
 
-use Exception;
-use App\Services\ApiService;
-use App\Services\LoggerService;
 use App\Collectors\CpuCollector;
 use App\Collectors\DiskCollector;
 use App\Collectors\MemoryCollector;
 use App\Collectors\UptimeCollector;
+use App\Services\ApiService;
+use App\Services\LoggerService;
+use Exception;
 
 class Agent
 {
     /**
-     * Class constructor
+     * Class constructor.
      *
      * @param private readonly
      * @param private readonly
@@ -24,7 +26,7 @@ class Agent
 
     /**
      * Class run
-     * Collects metrics and sends them to the API, generating logs
+     * Collects metrics and sends them to the API, generating logs.
      */
     public function run(string $uri): void
     {

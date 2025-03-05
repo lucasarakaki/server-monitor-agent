@@ -1,25 +1,26 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Services;
 
 class LoggerService
 {
     /**
      * Class constructor
-     * Stores the value in logFile
+     * Stores the value in logFile.
      */
     public function __construct(
         /**
-         * Save the file name
+         * Save the file name.
          */
-        private readonly string $logFile
-    )
-    {
+        private readonly string $logFile,
+    ) {
     }
 
     /**
      * Class Log
-     * Captures the log and saves it in the logs directory
+     * Captures the log and saves it in the logs directory.
      */
     public function Log(string $message): void
     {

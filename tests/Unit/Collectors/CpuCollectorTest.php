@@ -1,11 +1,14 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace Tests\Unit\Collectors;
 
 use App\Collectors\CpuCollector;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class for testing CpuCollector
+ * Class for testing CpuCollector.
  */
 class CpuCollectorTest extends TestCase
 {

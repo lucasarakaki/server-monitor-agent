@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace App\Collectors;
 
 use App\Exceptions\CollectorException;
@@ -7,7 +10,7 @@ use Exception;
 class CpuCollector
 {
     /**
-     * collecting CPU metrics
+     * collecting CPU metrics.
      */
     public function collector(): float
     {
@@ -17,12 +20,12 @@ class CpuCollector
             $cpuUsage = 100 - (float) trim($output);
 
             if ($cpuUsage < 0 || $cpuUsage > 100) {
-                throw new CollectorException('Invalid CPU Value: ' . $cpuUsage);
+                throw new CollectorException('Invalid CPU Value: '.$cpuUsage);
             }
 
             return $cpuUsage;
         } catch (Exception $e) {
-            throw new CollectorException('Error collecting CPU metrics: ' . $e->getMessage());
+            throw new CollectorException('Error collecting CPU metrics: '.$e->getMessage());
         }
     }
 }

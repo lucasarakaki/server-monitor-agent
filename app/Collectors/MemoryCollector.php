@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace App\Collectors;
 
 use App\Exceptions\CollectorException;
@@ -7,7 +10,7 @@ use Exception;
 class MemoryCollector
 {
     /**
-     * collecting memory metrics
+     * collecting memory metrics.
      */
     public function collector(): float
     {
@@ -17,12 +20,12 @@ class MemoryCollector
             $memoryUsage = (float) trim($output);
 
             if ($memoryUsage < 0 || $memoryUsage > 100) {
-                throw new CollectorException('Invalid memory value' . $memoryUsage);
+                throw new CollectorException('Invalid memory value'.$memoryUsage);
             }
 
             return $memoryUsage;
         } catch (Exception $e) {
-            throw new CollectorException('Error collecting memory metrics' . $e->getMessage());
+            throw new CollectorException('Error collecting memory metrics'.$e->getMessage());
         }
     }
 }

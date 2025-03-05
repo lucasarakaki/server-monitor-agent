@@ -1,11 +1,14 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace Tests\Unit\Collectors;
 
 use App\Collectors\MemoryCollector;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class for testing MemoryCollector
+ * Class for testing MemoryCollector.
  */
 class MemoryCollectorTest extends TestCase
 {
@@ -22,5 +25,4 @@ class MemoryCollectorTest extends TestCase
         $this->assertGreaterThanOrEqual(0, $memoryUsage);
         $this->assertLessThanOrEqual(100, $memoryUsage);
     }
-
 }

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace App\Services;
 
-use RuntimeException;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use RuntimeException;
 
 class ApiService
 {
@@ -17,7 +19,7 @@ class ApiService
 
     /**
      * Class sendMetricsApi
-     * Sends metrics to the API
+     * Sends metrics to the API.
      */
     public function sendMetricsApi(array $metrics, string $uri): void
     {

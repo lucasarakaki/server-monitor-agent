@@ -1,11 +1,14 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace Tests\Unit\Collectors;
 
 use App\Collectors\DiskCollector;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class for testing DiskCollector
+ * Class for testing DiskCollector.
  */
 class DiskCollectorTest extends TestCase
 {

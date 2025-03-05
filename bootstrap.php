@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 // Loading autoloading composer
 require __DIR__.'/vendor/autoload.php';
 

@@ -1,11 +1,14 @@
 <?php
+
+declare(strict_types = 1);
+
 namespace Tests\Unit\Collectors;
 
 use App\Collectors\UptimeCollector;
 use PHPUnit\Framework\TestCase;
 
 /**
- * Class for testing UptimeCollector
+ * Class for testing UptimeCollector.
  */
 class UptimeCollectorTest extends TestCase
 {
