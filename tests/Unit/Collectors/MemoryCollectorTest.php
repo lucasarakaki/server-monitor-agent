@@ -1,28 +1,54 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Tests\Unit\Collectors;
 
 use App\Collectors\MemoryCollector;
+use App\Exceptions\CollectorException;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class for testing MemoryCollector.
- */
 class MemoryCollectorTest extends TestCase
 {
-    /**
-     * This test checks if the collect() method returns a value between 0 and 100,
-     * which is the expected range for Memory usage.
-     */
     public function testCollectReturnsValidMemoryUsage(): void
     {
-        $memoryUsage = new MemoryCollector();
-        $memoryUsage = $memoryUsage->collector();
+        $collector = $this->getMockBuilder(MemoryCollector::class)
+            ->onlyMethods(['executeShellCommand'])
+            ->getMock();
+
+        $collector->method('executeShellCommand')->willReturn('75');
+
+        $memoryUsage = $collector->collector();
 
         $this->assertIsFloat($memoryUsage);
-        $this->assertGreaterThanOrEqual(0, $memoryUsage);
-        $this->assertLessThanOrEqual(100, $memoryUsage);
+        $this->assertEquals(75.0, $memoryUsage);
+    }
+
+    public function testCollectThrowsExceptionOnCommandFailure(): void
+    {
+        $this->expectException(CollectorException::class);
+        $this->expectExceptionMessage('Failed to execute shell command.');
+
+        $collector = $this->getMockBuilder(MemoryCollector::class)
+            ->onlyMethods(['executeShellCommand'])
+            ->getMock();
+
+        $collector->method('executeShellCommand')->willReturn(null);
+
+        $collector->collector();
+    }
+
+    public function testCollectThrowsExceptionOnInvalidValue(): void
+    {
+        $this->expectException(CollectorException::class);
+        $this->expectExceptionMessage('Invalid memory value: 110');
+
+        $collector = $this->getMockBuilder(MemoryCollector::class)
+            ->onlyMethods(['executeShellCommand'])
+            ->getMock();
+
+        $collector->method('executeShellCommand')->willReturn('110');
+
+        $collector->collector();
     }
 }
