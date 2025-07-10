@@ -1,28 +1,54 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Tests\Unit\Collectors;
 
 use App\Collectors\CpuCollector;
+use App\Exceptions\CollectorException;
 use PHPUnit\Framework\TestCase;
 
-/**
- * Class for testing CpuCollector.
- */
 class CpuCollectorTest extends TestCase
 {
-    /**
-     * This test checks if the collect() method returns a value between 0 and 100,
-     * which is the expected range for CPU usage.
-     */
     public function testCollectReturnsValidCpuUsage(): void
     {
-        $cpuUsage = new CpuCollector();
-        $cpuUsage = $cpuUsage->collector();
+        $collector = $this->getMockBuilder(CpuCollector::class)
+            ->onlyMethods(['executeShellCommand'])
+            ->getMock();
+
+        $collector->method('executeShellCommand')->willReturn('10');
+
+        $cpuUsage = $collector->collector();
 
         $this->assertIsFloat($cpuUsage);
-        $this->assertGreaterThanOrEqual(0, $cpuUsage);
-        $this->assertLessThanOrEqual(100, $cpuUsage);
+        $this->assertEquals(90.0, $cpuUsage);
+    }
+
+    public function testCollectThrowsExceptionOnCommandFailure(): void
+    {
+        $this->expectException(CollectorException::class);
+        $this->expectExceptionMessage('Failed to execute shell command.');
+
+        $collector = $this->getMockBuilder(CpuCollector::class)
+            ->onlyMethods(['executeShellCommand'])
+            ->getMock();
+
+        $collector->method('executeShellCommand')->willReturn(null);
+
+        $collector->collector();
+    }
+
+    public function testCollectThrowsExceptionOnInvalidValue(): void
+    {
+        $this->expectException(CollectorException::class);
+        $this->expectExceptionMessage('Invalid CPU Value: -10');
+
+        $collector = $this->getMockBuilder(CpuCollector::class)
+            ->onlyMethods(['executeShellCommand'])
+            ->getMock();
+
+        $collector->method('executeShellCommand')->willReturn('110');
+
+        $collector->collector();
     }
 }
