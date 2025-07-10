@@ -15,7 +15,11 @@ class UptimeCollector
     public function collector(): int
     {
         try {
-            $output = shell_exec("cat /proc/uptime | awk '{print $1}'");
+            $output = $this->executeShellCommand("cat /proc/uptime | awk '{print $1}'");
+
+            if ($output === null) {
+                throw new CollectorException('Failed to execute shell command.');
+            }
 
             $uptimeUsage = (int) trim($output);
 
@@ -27,5 +31,13 @@ class UptimeCollector
         } catch (Exception $e) {
             throw new CollectorException('Error collecting uptime metrics'.$e->getMessage());
         }
+    }
+
+    /**
+     * Executes a shell command.
+     */
+    protected function executeShellCommand(string $command): ?string
+    {
+        return shell_exec($command);
     }
 }

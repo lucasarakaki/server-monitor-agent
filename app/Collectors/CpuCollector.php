@@ -15,7 +15,11 @@ class CpuCollector
     public function collector(): float
     {
         try {
-            $output = shell_exec("top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\\([0-9.]*\\)%* id.*/\\1/'");
+            $output = $this->executeShellCommand("top -bn1 | grep 'Cpu(s)' | sed 's/.*, *\([0-9.]*\)%* id.*/\1/'");
+
+            if ($output === null) {
+                throw new CollectorException('Failed to execute shell command.');
+            }
 
             $cpuUsage = 100 - (float) trim($output);
 
@@ -27,5 +31,13 @@ class CpuCollector
         } catch (Exception $e) {
             throw new CollectorException('Error collecting CPU metrics: '.$e->getMessage());
         }
+    }
+
+    /**
+     * Executes a shell command.
+     */
+    protected function executeShellCommand(string $command): ?string
+    {
+        return shell_exec($command);
     }
 }
